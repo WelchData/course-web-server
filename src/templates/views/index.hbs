@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/img/weather.png">
+    <script src="/js/app.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-content">
+        {{>header}}
+        <form id="weather">
+            <fieldset>Get the forecast
+            <div>Location: </div><input id="location-input">
+        </form>
+        <div id="forecast-results"></div>
+        </fieldset>
+    </div>
+    
+    
+    {{>footer}}
+
+<script>
+const form = document.querySelector('#weather')
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const location = document.querySelector('#location-input').value
+    const url = `http://api.weatherstack.com/current?access_key=${access_key}&query=${location}`
+    console.log(url)
+    fetch(url).then(response => response.json().then(result => {
+        const cleanDiv = document.querySelector('#forecast-results')
+        //console.log(result)
+        const description = document.createElement('p')
+        description.textContent = `It's ${result.current.weather_descriptions[0]} in ${location} and ${result.current.temperature} degrees.`
+        
+        cleanDiv.appendChild(description)
+
+    }))
+})
+
+</script>
+</body>
+</html>
