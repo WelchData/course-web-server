@@ -4,7 +4,7 @@ const params = {
     query: 'London'
 }
 
-axios.get(`http://api.weatherstack.com/current`, {params})
+axios.get(`https://api.weatherstack.com/current`, {params})
     .then(response => {
         const apiResponse = response.data;
         //console.log(`The temp is: ${apiResponse.current.temperature} but it feels like ${apiResponse.current.feelslike}`)
@@ -16,7 +16,7 @@ axios.get(`http://api.weatherstack.com/current`, {params})
 
 const getForecast = (location) => {
     params.query = location
-    const data = axios.get(`http://api.weatherstack.com/current`, {params})    
+    const data = axios.get(`https://api.weatherstack.com/current`, {params})    
     return data
 // end of getForecast
 }
