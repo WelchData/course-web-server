@@ -3,6 +3,10 @@ const path = require('path');
 const hbs = require('hbs');
 const app = express()
 
+// So we're goint to find the port number if given (by Heroku for instance)
+// or pass in a default if none given.
+const port = process.env.PORT || 3000
+
 // get the forecast function
 const forecast = require('./utils/forecast.js')
 
@@ -96,6 +100,8 @@ app.get('*', (req, res) => {
 
 // start the server
 // you specify the port to listen to.
-app.listen(3000, () => {
-    console.log('Server is up on port 3000')
+
+// When pushed to Heroku you need to change this to be dynamic
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
 })
