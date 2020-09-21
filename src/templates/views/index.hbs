@@ -27,7 +27,7 @@ const form = document.querySelector('#weather')
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     const location = document.querySelector('#location-input').value
-    const url = `http://api.weatherstack.com/current?access_key=${access_key}&query=${location}`
+    const url = `https://api.weatherstack.com/current?access_key=${access_key}&query=${location}`
     console.log(url)
     fetch(url).then(response => response.json().then(result => {
         const cleanDiv = document.querySelector('#forecast-results')
